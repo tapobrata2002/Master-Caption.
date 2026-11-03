@@ -1,0 +1,1380 @@
+
+/* =========================================
+   MASTERCAPTION — MASTER STYLESHEET
+   Version: 3.6
+========================================= */
+
+/* =========================================
+   1. ROOT VARIABLES & THEMES
+========================================= */
+
+:root {
+  --c-pitch-black: #1B1B1B;
+  --c-charcoal: #323232;
+  --c-charcoal-light: #444444;
+  --c-cream: #FFE7D0;
+  --c-cream-card: #FFF2E4;
+  --c-orange: #FC6E20;
+  --c-orange-hover: #E35E14;
+  --c-orange-soft: rgba(252, 110, 32, 0.18);
+
+  /* Dark Theme */
+  --bg-base: var(--c-pitch-black);
+  --bg-surface: var(--c-charcoal);
+  --bg-surface-elevated: #282828;
+  --border: #424242;
+  --border-light: #525252;
+  --text-main: #FFFFFF;
+  --text-muted: #BDBDBD;
+  --stage-bg: #111111;
+
+  /* Accent */
+  --accent: var(--c-orange);
+  --accent-hover: var(--c-orange-hover);
+  --accent-soft: var(--c-orange-soft);
+  --success: #10B981;
+
+  --radius: 10px;
+
+  /* Caption Variables */
+  --caption-pos-x: 50%;
+  --caption-pos-y: 75%;
+  --caption-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --caption-font-size: 28px;
+  --caption-font-weight: 800;
+  --caption-color: #FFFFFF;
+  --caption-highlight: var(--c-orange);
+  --caption-bg: rgba(27, 27, 27, 0.88);
+  --caption-stroke-color: #000000;
+  --caption-stroke-width: 2px;
+  --caption-transform: uppercase;
+}
+
+/* Light Theme */
+
+[data-theme="light"] {
+  --bg-base: var(--c-cream);
+  --bg-surface: var(--c-cream-card);
+  --bg-surface-elevated: #F5DEC5;
+  --border: #E8CCB0;
+  --border-light: #D4B698;
+  --text-main: var(--c-pitch-black);
+  --text-muted: #7A695A;
+  --stage-bg: var(--c-charcoal);
+
+  --caption-color: #FFFFFF;
+  --caption-bg: rgba(50, 50, 50, 0.85);
+}
+
+
+/* =========================================
+   2. GLOBAL RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-main);
+
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+
+/* =========================================
+   3. APPLICATION HEADER
+========================================= */
+
+.app-header {
+  width: 100%;
+  height: 56px;
+  min-height: 56px;
+
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 1.5rem;
+
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+/* Brand */
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+  margin-right: auto;
+  min-width: 0;
+}
+
+.brand-logo {
+  width: 36px;
+  height: 36px;
+
+  object-fit: contain;
+  display: block;
+
+  flex-shrink: 0;
+}
+
+.brand h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.brand h1 span {
+  color: var(--accent);
+}
+
+/* Header Right Controls */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 1.25rem;
+
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* System Status */
+
+.system-status {
+  display: flex;
+  align-items: center;
+
+  gap: 0.4rem;
+
+  font-size: 0.8rem;
+  color: var(--text-muted);
+
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+
+  flex-shrink: 0;
+}
+
+/* Theme Toggle */
+
+.btn-icon {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+
+  border-radius: 6px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  flex-shrink: 0;
+
+  transition: background 0.2s ease;
+}
+
+.btn-icon:hover {
+  background: var(--border-light);
+}
+
+/* Export Group */
+
+.export-group {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   4. MAIN STUDIO LAYOUT
+========================================= */
+
+.studio-layout {
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: 480px minmax(0, 1fr);
+
+  height: calc(100vh - 56px - 44px);
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+.panel {
+  padding: 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Left Editor */
+
+.editor-panel {
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+
+  gap: 1rem;
+}
+
+/* Right Preview */
+
+.preview-panel {
+  background: var(--bg-base);
+
+  gap: 0.75rem;
+}
+
+
+/* =========================================
+   5. VIDEO UPLOAD / DROPZONE
+========================================= */
+
+.dropzone {
+  border: 1.5px dashed var(--accent);
+  border-radius: var(--radius);
+
+  padding: 1.5rem 1rem;
+
+  text-align: center;
+  cursor: pointer;
+
+  background: var(--bg-surface-elevated);
+
+  transition: all 0.2s ease;
+}
+
+.dropzone:hover,
+.dropzone.dragover {
+  border-color: var(--accent-hover);
+  background: var(--accent-soft);
+}
+
+.dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 0.4rem;
+}
+
+.upload-icon {
+  stroke: var(--accent);
+}
+
+.dropzone-content h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.dropzone-content p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+
+/* =========================================
+   6. LOADED FILE INFORMATION
+========================================= */
+
+.file-loaded-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: var(--bg-surface-elevated);
+
+  padding: 0.6rem 0.85rem;
+
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+
+  font-size: 0.85rem;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  max-width: 320px;
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta-tag {
+  font-size: 0.65rem;
+
+  background: var(--c-charcoal-light);
+  color: var(--accent);
+
+  padding: 2px 6px;
+  border-radius: 4px;
+
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   7. PROCESSING PROGRESS
+========================================= */
+
+.progress-box {
+  background: var(--bg-surface-elevated);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  padding: 0.65rem 0.85rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 0.75rem;
+  margin-bottom: 0.4rem;
+
+  color: var(--text-muted);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+
+  background: var(--border);
+  border-radius: 99px;
+
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+
+  background: var(--accent);
+
+  transition: width 0.2s ease;
+}
+
+
+/* =========================================
+   8. GENERATE CAPTIONS BUTTON
+========================================= */
+
+.btn-cta {
+  background: var(--accent);
+  color: #FFFFFF;
+
+  border: none;
+  padding: 0.75rem;
+
+  border-radius: var(--radius);
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.btn-cta:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-cta:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   9. TRANSCRIPT SECTION
+========================================= */
+
+.transcript-section {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  background: var(--bg-surface-elevated);
+
+  min-height: 240px;
+}
+
+.section-title {
+  padding: 0.65rem 0.85rem;
+
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: var(--bg-surface);
+
+  gap: 0.5rem;
+}
+
+.section-title h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.section-title .hint {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.transcript-scroller {
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: 0.5rem;
+  min-height: 0;
+}
+
+.empty-state {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.8rem;
+  color: var(--text-muted);
+
+  text-align: center;
+  padding: 2rem;
+}
+
+.transcript-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.6rem;
+}
+
+
+/* =========================================
+   10. TRANSCRIPT CHUNKS
+========================================= */
+
+.transcript-chunk {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+
+  padding: 0.65rem;
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  border-left: 3px solid transparent;
+
+  transition: all 0.15s ease;
+}
+
+.transcript-chunk.active {
+  border-left-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.chunk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 0.75rem;
+
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+
+.boundary-controls {
+  display: flex;
+  align-items: center;
+
+  gap: 0.75rem;
+}
+
+.time-nudge-group {
+  display: flex;
+  align-items: center;
+
+  gap: 0.25rem;
+
+  font-family: 'JetBrains Mono', monospace;
+
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+.time-display {
+  color: var(--accent);
+  font-weight: 600;
+
+  min-width: 44px;
+  text-align: center;
+}
+
+.btn-nudge {
+  background: var(--bg-surface-elevated);
+
+  border: 1px solid var(--border);
+  color: var(--text-main);
+
+  border-radius: 3px;
+
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.btn-nudge:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #FFFFFF;
+}
+
+.words-wrap {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.35rem;
+}
+
+.word-chip {
+  padding: 2px 6px;
+
+  border-radius: 4px;
+
+  font-size: 0.825rem;
+
+  cursor: pointer;
+
+  background: var(--bg-surface-elevated);
+
+  border: 1px solid var(--border);
+
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.word-chip:hover {
+  border-color: var(--accent);
+}
+
+.word-chip.active-word {
+  background: var(--accent);
+  color: #FFFFFF;
+
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+
+/* =========================================
+   11. CUSTOMIZER TOOLBAR
+========================================= */
+
+.customizer-toolbar {
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  padding: 0.65rem 1rem;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.75rem;
+  flex-wrap: wrap;
+
+  flex-shrink: 0;
+}
+
+.styled-select {
+  background: var(--bg-surface-elevated);
+  color: var(--text-main);
+
+  border: 1px solid var(--border);
+
+  padding: 4px 8px;
+
+  border-radius: 6px;
+  font-size: 0.78rem;
+
+  cursor: pointer;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+
+  gap: 0.4rem;
+
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.control-group input[type="range"] {
+  width: 65px;
+
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.control-group input[type="color"] {
+  border: 1px solid var(--border);
+
+  width: 24px;
+  height: 24px;
+
+  border-radius: 4px;
+  background: none;
+
+  cursor: pointer;
+  padding: 0;
+}
+
+#bgColorGroup.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.val-badge {
+  font-family: 'JetBrains Mono', monospace;
+
+  font-size: 0.75rem;
+  color: var(--text-main);
+
+  min-width: 28px;
+}
+
+.highlight-val {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.checkbox-group label {
+  cursor: pointer;
+  user-select: none;
+
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+
+/* =========================================
+   12. VIDEO PREVIEW STAGE
+========================================= */
+
+.stage-container {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: var(--stage-bg);
+
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+
+  position: relative;
+
+  min-height: 0;
+  user-select: none;
+}
+
+.video-stage {
+  position: relative;
+
+  height: 100%;
+  max-height: calc(100vh - 160px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+video {
+  height: 100%;
+  max-width: 100%;
+
+  object-fit: contain;
+  display: block;
+
+  pointer-events: auto;
+}
+
+
+/* =========================================
+   13. DYNAMIC CAPTION POSITIONING
+========================================= */
+
+.dynamic-caption-container {
+  position: absolute;
+
+  left: var(--caption-pos-x);
+  top: var(--caption-pos-y);
+
+  transform: translate(-50%, -50%);
+
+  width: max-content;
+  max-width: 90%;
+
+  text-align: center;
+
+  cursor: grab;
+
+  z-index: 20;
+
+  touch-action: none;
+  pointer-events: auto;
+
+  transition: transform 0.05s ease-out;
+}
+
+.dynamic-caption-container:active {
+  cursor: grabbing;
+}
+
+
+/* =========================================
+   14. CAPTION TEXT STYLING
+========================================= */
+
+.caption-text-content {
+  display: inline-block !important;
+
+  white-space: nowrap !important;
+
+  font-family: var(--caption-font-family) !important;
+  font-size: var(--caption-font-size) !important;
+  font-weight: var(--caption-font-weight) !important;
+
+  color: var(--caption-color) !important;
+  background: var(--caption-bg) !important;
+
+  padding: 8px 16px !important;
+
+  border-radius: 8px !important;
+
+  text-transform: var(--caption-transform) !important;
+
+  line-height: 1.25 !important;
+
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.95),
+    0 0 2px var(--caption-stroke-color) !important;
+
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+
+  transition: background 0.15s ease;
+
+  user-select: none;
+}
+
+
+/* =========================================
+   15. INDIVIDUAL CAPTION WORDS
+========================================= */
+
+.caption-word-span {
+  display: inline-block !important;
+  white-space: nowrap !important;
+
+  margin: 0 4px !important;
+
+  transition:
+    transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.12s ease;
+}
+
+/* Kinetic Pop */
+
+.caption-word-span.pop-active {
+  color: var(--caption-highlight) !important;
+
+  transform: scale(1.18) translateY(-2px);
+
+  text-shadow:
+    0 0 16px var(--caption-highlight),
+    0 2px 4px rgba(0, 0, 0, 0.95) !important;
+}
+
+/* Color Glow */
+
+.caption-word-span.glow-active {
+  color: var(--caption-highlight) !important;
+
+  text-shadow:
+    0 0 20px var(--caption-highlight),
+    0 0 8px var(--caption-highlight) !important;
+}
+
+/* Pill Box */
+
+.caption-word-span.box-active {
+  background: var(--caption-highlight) !important;
+  color: #000000 !important;
+
+  padding: 2px 8px !important;
+
+  border-radius: 5px !important;
+
+  transform: scale(1.05);
+
+  text-shadow: none !important;
+}
+
+
+/* =========================================
+   16. BUTTONS
+========================================= */
+
+.btn-primary {
+  padding: 0.5rem 1rem;
+
+  background: var(--accent);
+  color: #FFFFFF;
+
+  border: none;
+  border-radius: 6px;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  padding: 0.35rem 0.75rem;
+
+  background: var(--bg-surface-elevated);
+
+  border: 1px solid var(--border);
+  color: var(--text-main);
+
+  border-radius: 6px;
+
+  font-size: 0.75rem;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: none;
+
+  border: none;
+  color: var(--accent);
+
+  font-size: 0.8rem;
+
+  cursor: pointer;
+}
+
+/* MP4 Export */
+
+#exportMp4Btn {
+  background: var(--accent);
+  color: #FFFFFF;
+
+  border: none;
+
+  font-weight: 700;
+
+  padding: 0.35rem 0.85rem;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+
+#exportMp4Btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+#exportMp4Btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   17. EXPORT MODAL
+========================================= */
+
+.export-modal {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(27, 27, 27, 0.85);
+
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+}
+
+.export-modal-card {
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border);
+
+  padding: 2rem;
+
+  border-radius: var(--radius);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1rem;
+
+  width: 90%;
+  max-width: 420px;
+
+  text-align: center;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+
+  border-radius: 50%;
+
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================
+   18. APPLICATION FOOTER
+========================================= */
+
+.app-footer {
+  height: 44px;
+  min-height: 44px;
+
+  background: var(--bg-surface);
+
+  border-top: 1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 1.5rem;
+
+  font-size: 0.75rem;
+  color: var(--text-muted);
+
+  flex-shrink: 0;
+
+  user-select: none;
+  z-index: 10;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+
+  gap: 0.75rem;
+}
+
+.footer-legal-badge {
+  background: var(--c-charcoal-light);
+  color: var(--accent);
+
+  border: 1px solid rgba(252, 110, 32, 0.3);
+
+  padding: 2px 7px;
+
+  border-radius: 4px;
+
+  font-weight: 700;
+  font-size: 0.65rem;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.copyright-notice strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+
+  gap: 0.6rem;
+
+  font-size: 0.72rem;
+}
+
+.dot-separator {
+  opacity: 0.35;
+}
+
+
+/* =========================================
+   19. UTILITY CLASSES
+========================================= */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================================
+   20. TABLET RESPONSIVENESS
+========================================= */
+
+@media (max-width: 1024px) {
+
+  body {
+    height: auto;
+    min-height: 100vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .studio-layout {
+    grid-template-columns: 1fr;
+
+    height: auto;
+    overflow: visible;
+  }
+
+  .preview-panel {
+    order: 1;
+
+    border-bottom: 1px solid var(--border);
+
+    padding: 1rem;
+    height: auto;
+  }
+
+  .stage-container {
+    min-height: 400px;
+    height: 52vh;
+  }
+
+  .video-stage {
+    max-height: 100%;
+  }
+
+  .editor-panel {
+    order: 2;
+
+    border-right: none;
+
+    padding: 1rem;
+    height: auto;
+  }
+
+  .transcript-section {
+    min-height: 320px;
+    max-height: 460px;
+  }
+
+  .app-footer {
+    height: auto;
+    min-height: 44px;
+
+    padding: 0.85rem 1rem;
+
+    flex-direction: column;
+    gap: 0.5rem;
+
+    text-align: center;
+  }
+
+  .footer-left {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}
+
+
+/* =========================================
+   21. MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 640px) {
+
+  /* Header */
+
+  .app-header {
+    height: auto;
+    min-height: 56px;
+
+    padding: 0.75rem 1rem;
+
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .brand {
+    width: 100%;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand h1 {
+    font-size: 1.05rem;
+  }
+
+  .header-right {
+    width: 100%;
+
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 0.75rem;
+
+    margin-left: 0;
+  }
+
+  .export-group {
+    width: 100%;
+    gap: 0.4rem;
+  }
+
+  .export-group button {
+    flex: 1;
+    min-width: 0;
+
+    padding: 0.5rem 0.25rem;
+
+    font-size: 0.7rem;
+  }
+
+  /* Preview */
+
+  .preview-panel {
+    padding: 0.75rem;
+  }
+
+  .stage-container {
+    min-height: 320px;
+    height: 48vh;
+  }
+
+  /* Customizer */
+
+  .customizer-toolbar {
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .control-group {
+    gap: 0.3rem;
+    font-size: 0.72rem;
+  }
+
+  .control-group input[type="range"] {
+    width: 50px;
+  }
+
+  /* Editor */
+
+  .editor-panel {
+    padding: 0.75rem;
+  }
+
+  .transcript-section {
+    min-height: 300px;
+  }
+
+  .section-title {
+    flex-wrap: wrap;
+  }
+
+  .section-title .hint {
+    font-size: 0.65rem;
+  }
+
+  .chunk-header {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .boundary-controls {
+    gap: 0.4rem;
+  }
+
+  /* Footer */
+
+  .app-footer {
+    padding: 0.85rem 0.75rem;
+  }
+}
+
+
+/* =========================================
+   22. SMALL MOBILE DEVICES
+========================================= */
+
+@media (max-width: 380px) {
+
+  .app-header {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .header-right {
+    gap: 0.5rem;
+  }
+
+  .export-group {
+    gap: 0.25rem;
+  }
+
+  .export-group button {
+    font-size: 0.62rem;
+    padding: 0.45rem 0.15rem;
+  }
+
+  .brand h1 {
+    font-size: 0.95rem;
+  }
+
+  .customizer-toolbar {
+    gap: 0.4rem;
+  }
+
+  .control-group input[type="range"] {
+    width: 42px;
+  }
+
+  .stage-container {
+    min-height: 280px;
+  }
+}

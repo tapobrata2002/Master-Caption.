@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#1B1B1B">
+  <meta name="description" content="MasterCaption — Create, customize, and export professional video captions directly in your browser.">
+
+  <title>MasterCaption | AI Video Caption Studio</title>
+
+  <link rel="stylesheet" href="style.css?v=3.6">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="./assets/images/favicon4.png"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Caveat:wght@700&family=Montserrat:wght@400;600;700;800&family=Oswald:wght@500;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+<body>
+
+  <!-- ==============================
+       TOP APPLICATION HEADER
+  =============================== -->
+
+  <header class="app-header">
+
+    <div class="brand">
+      <img
+        src="./assets/images/mastercaption-logo.png"
+        alt="MasterCaption Logo"
+        class="brand-logo"
+      >
+
+      <h1>Master<span>Caption.</span></h1>
+    </div>
+
+    <div class="header-right">
+
+      <div class="system-status">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Ready</span>
+      </div>
+
+      <button
+        type="button"
+        class="btn-icon theme-toggle"
+        id="themeToggleBtn"
+        title="Toggle Light/Dark Theme"
+        aria-label="Toggle Theme"
+      >
+
+        <svg
+          class="icon-sun"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+
+        <svg
+          class="icon-moon hidden"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+
+      </button>
+
+      <div class="export-group">
+
+        <button
+          type="button"
+          class="btn-secondary"
+          id="exportSrtBtn"
+          disabled
+        >
+          Export .SRT
+        </button>
+
+        <button
+          type="button"
+          class="btn-secondary"
+          id="exportVttBtn"
+          disabled
+        >
+          Export .VTT
+        </button>
+
+        <button
+          type="button"
+          class="btn-primary"
+          id="exportMp4Btn"
+          disabled
+        >
+          Export Video (.mp4)
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ==============================
+       MAIN STUDIO WORKSPACE
+  =============================== -->
+
+  <main class="studio-layout">
+
+    <!-- LEFT PANEL: EDITOR -->
+
+    <section class="panel editor-panel">
+
+      <!-- Video Upload -->
+
+      <div class="dropzone" id="dropzone">
+
+        <input
+          type="file"
+          id="mediaInput"
+          accept="video/mp4,video/quicktime,video/webm,audio/mp3,audio/wav,audio/m4a"
+          hidden
+        >
+
+        <div class="dropzone-content">
+
+          <svg
+            class="upload-icon"
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+
+          <h3>Import Video or Reel</h3>
+
+          <p>MP4, MOV, or WebM (100% Client-Side Privacy)</p>
+
+          <button
+            type="button"
+            class="btn-primary"
+            id="browseBtn"
+          >
+            Select File
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- Loaded File Information -->
+
+      <div class="file-loaded-bar hidden" id="fileLoadedBar">
+
+        <div class="file-info">
+          <span class="file-icon">🎬</span>
+          <span id="fileName">video.mp4</span>
+          <span class="meta-tag" id="fileMetaTag">1080p</span>
+        </div>
+
+        <button
+          type="button"
+          id="replaceFileBtn"
+          class="btn-ghost"
+        >
+          Replace
+        </button>
+
+      </div>
+
+
+      <!-- Processing Progress -->
+
+      <div class="progress-box hidden" id="progressBox">
+
+        <div class="progress-header">
+          <span id="progressLabel">Initializing Engine...</span>
+          <span id="progressPercent">0%</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+      </div>
+
+
+      <!-- Generate Captions -->
+
+      <button
+        type="button"
+        class="btn-cta"
+        id="transcribeBtn"
+        disabled
+      >
+        Generate Auto Captions
+      </button>
+
+
+      <!-- Transcript Timeline -->
+
+      <div class="transcript-section">
+
+        <div class="section-title">
+          <h4>Transcript Timeline</h4>
+          <span class="hint">Adjust boundaries ±0.1s or edit text</span>
+        </div>
+
+        <div class="transcript-scroller" id="transcriptScroller">
+
+          <div class="empty-state" id="emptyState">
+            <p>Upload a video to populate editable timestamps and captions.</p>
+          </div>
+
+          <div class="transcript-list hidden" id="transcriptList"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RIGHT PANEL: PREVIEW & CUSTOMIZATION -->
+
+    <section class="panel preview-panel">
+
+      <!-- Caption Customizer Toolbar -->
+
+      <div class="customizer-toolbar">
+
+        <div class="control-group">
+          <label for="fontFamilySelect">Font</label>
+
+          <select id="fontFamilySelect" class="styled-select">
+            <option value="'Plus Jakarta Sans', sans-serif" selected>Jakarta</option>
+            <option value="'Montserrat', sans-serif">Montserrat</option>
+            <option value="'Oswald', sans-serif">Oswald</option>
+            <option value="'Bangers', cursive">Bangers</option>
+            <option value="'Caveat', cursive">Caveat</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="highlightEffectSelect">Effect</label>
+
+          <select id="highlightEffectSelect" class="styled-select">
+            <option value="pop" selected>Kinetic Pop</option>
+            <option value="glow">Color Glow</option>
+            <option value="box">Pill Box</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="fpsSelect">FPS</label>
+
+          <select id="fpsSelect" class="styled-select">
+            <option value="24">24 fps</option>
+            <option value="30">30 fps</option>
+            <option value="60" selected>60 fps</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="wordsPerScreenRange">Words</label>
+          <input type="range" id="wordsPerScreenRange" min="1" max="8" value="3">
+          <span id="wordsPerScreenVal" class="val-badge highlight-val">3</span>
+        </div>
+
+        <div class="control-group">
+          <label for="posXRange">X</label>
+          <input type="range" id="posXRange" min="10" max="90" value="50">
+          <span id="posXVal" class="val-badge">50%</span>
+        </div>
+
+        <div class="control-group">
+          <label for="posYRange">Y</label>
+          <input type="range" id="posYRange" min="5" max="92" value="75">
+          <span id="posYVal" class="val-badge">75%</span>
+        </div>
+
+        <div class="control-group">
+          <label for="fontSizeRange">Size</label>
+          <input type="range" id="fontSizeRange" min="16" max="64" value="28">
+          <span id="fontSizeVal" class="val-badge">28px</span>
+        </div>
+
+        <div class="control-group">
+          <label for="fontWeightRange">Weight</label>
+          <input type="range" id="fontWeightRange" min="400" max="800" step="100" value="800">
+          <span id="fontWeightVal" class="val-badge">800</span>
+        </div>
+
+        <div class="control-group">
+          <label for="strokeWidthRange">Outline</label>
+          <input type="range" id="strokeWidthRange" min="0" max="8" value="2">
+          <span id="strokeWidthVal" class="val-badge">2px</span>
+        </div>
+
+        <div class="control-group">
+          <input type="color" id="strokeColorInput" value="#000000" title="Outline Color" aria-label="Outline Color">
+        </div>
+
+        <div class="control-group">
+          <label for="textColorInput">Text</label>
+          <input type="color" id="textColorInput" value="#FFFFFF">
+        </div>
+
+        <div class="control-group">
+          <label for="highlightColorInput">Active</label>
+          <input type="color" id="highlightColorInput" value="#FC6E20">
+        </div>
+
+        <div class="control-group checkbox-group">
+          <input type="checkbox" id="bgBoxToggle" checked>
+          <label for="bgBoxToggle">Background</label>
+        </div>
+
+        <div class="control-group" id="bgColorGroup">
+          <input type="color" id="bgColorInput" value="#1B1B1B" aria-label="Caption Background Color">
+        </div>
+
+        <div class="control-group checkbox-group">
+          <input type="checkbox" id="uppercaseToggle" checked>
+          <label for="uppercaseToggle">CAPS</label>
+        </div>
+
+      </div>
+
+
+      <!-- Video Preview Stage -->
+
+      <div class="stage-container" id="stageContainer">
+
+        <div class="video-stage" id="videoStage">
+
+          <video
+            id="videoPreview"
+            playsinline
+            controls
+          ></video>
+
+          <div class="dynamic-caption-container" id="dynamicCaption">
+            <span class="caption-text-content" id="captionTextContent"></span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ==============================
+       APPLICATION FOOTER
+  =============================== -->
+
+  <footer class="app-footer">
+
+    <div class="footer-left">
+      <p class="copyright-notice">
+        &copy; 2026 <strong>MasterCaption</strong>.
+      </p>
+    </div>
+
+    <div class="footer-right">
+      <span class="footer-meta">made by</span>
+      <span class="dot-separator">•</span>
+      <span class="footer-meta"><strong>Tapobrata Roy</strong></span>
+    </div>
+
+  </footer>
+
+
+  <!-- ==============================
+       VIDEO RENDERING CANVAS
+  =============================== -->
+
+  <canvas id="renderCanvas" style="display: none;"></canvas>
+
+
+  <!-- ==============================
+       EXPORT PROGRESS MODAL
+  =============================== -->
+
+  <div class="export-modal hidden" id="exportModal">
+
+    <div class="export-modal-card">
+
+      <div class="spinner"></div>
+
+      <h3 id="exportStatusTitle">Rendering Captioned Video...</h3>
+
+      <p id="exportStatusDesc">
+        Compositing native frames at maximum bitrate.
+      </p>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="exportProgressFill"></div>
+      </div>
+
+      <span class="val-badge" id="exportProgressVal">0%</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- APPLICATION JAVASCRIPT -->
+
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
