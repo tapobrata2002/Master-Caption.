@@ -1,55 +1,194 @@
 # 🎬 MasterCaption — AI Video Caption Studio
 
-**Turn videos into engaging, caption-ready content.**
-MasterCaption is an AI-powered video captioning platform designed to simplify subtitle generation and give creators greater control over their video captions. Generate transcripts, customize caption appearances, experiment with dynamic visual effects, and export your work — all through an intuitive interface.
+### Create. Customize. Caption.
 
-## ✨ Features
-- **Automatic Transcription:** Generate captions from video content using AI-powered transcription.
-- **Caption Customization:** Personalize font family, size, weight, colors, and positioning.
-- **Dynamic Caption Effects:** Add engaging text animations and word-highlighting effects.
-- **Live Video Preview:** Preview caption styling and positioning while customizing your video.
-- **Transcript Editing:** Review and fine-tune generated transcripts.
-- **Multiple Export Options:** Export subtitles in SRT and VTT formats, or export captioned videos in MP4 format.
-- **Theme Support:** Switch between dark and light themes.
-- **Responsive Design:** Enjoy a clean and adaptable interface across different screen sizes.
+Make every word count.
+
+**MasterCaption** is an AI-powered video captioning platform designed to simplify subtitle generation and give content creators greater control over their video captions.
+
+The platform allows users to generate transcripts, customize caption appearances, experiment with dynamic text effects, and export captioned content through an intuitive interface.
+
+Built using **HTML5, CSS3, and JavaScript**, MasterCaption combines automated transcription capabilities with flexible caption customization to make video editing workflows more efficient and creative.
+
+📂 **GitHub Repository:** [View Source Code](https://github.com/tapobrata2002/Master-Caption.)
+
+---
+
+## 🚀 Features
+
+- 🤖 **AI-Powered Transcription** — Generate captions from video content using automated transcription technology.
+- ✍️ **Transcript Editing** — Review, edit, and refine automatically generated transcripts.
+- 🎨 **Caption Customization** — Personalize font family, font size, weight, colors, and caption positioning.
+- ✨ **Dynamic Caption Effects** — Apply text animations and word-highlighting effects to make captions more engaging.
+- 🎥 **Live Video Preview** — Preview caption styling and positioning while customizing video content.
+- 📄 **Subtitle Export** — Export subtitle files in SRT and VTT formats.
+- 🎬 **MP4 Video Export** — Export videos with customized captions.
+- 🌙 **Dark & Light Themes** — Switch between dark and light interface themes.
+- 📱 **Responsive Interface** — Adaptable layout for different screen sizes.
+- ⚡ **Interactive Experience** — Customize captions and preview visual changes through the application interface.
+
+---
 
 ## 🛠️ Tech Stack
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- AI-powered transcription technology
 
-## 🚀 Getting Started
-### Clone the Repository
-```bash
-git clone https://github.com/YOUR-USERNAME/MasterCaption.git
+| Technology | Purpose |
+|---|---|
+| HTML5 | Application structure |
+| CSS3 | Styling, layouts, and responsive design |
+| JavaScript (ES6+) | Application logic and interactive functionality |
+| AI-Powered Transcription | Automated speech-to-text processing |
+| SRT / VTT | Subtitle file formats |
+| MP4 | Captioned video export format |
+
+---
+
+## 📂 Project Structure
+
+```text
+Master-Caption/
+│
+├── assets/
+│   └── images/              # Application images and visual assets
+│
+├── js/                      # JavaScript application logic
+│
+├── index.html               # Main application entry point
+├── style.css                # Application styling
+└── README.md                # Project documentation
 ```
 
-### Navigate to the Project Directory
+---
+
+## ⚙️ How It Works
+
+### 1️⃣ Application Initialization
+
+- The application loads through the main HTML entry point.
+- CSS styles define the overall layout and visual appearance.
+- JavaScript manages the interactive functionality of the caption editor.
+
+### 2️⃣ Video Transcription
+
+- Users can generate transcripts from video content using AI-powered transcription.
+- Generated text provides the foundation for creating subtitles.
+- External transcription services or API credentials may need to be configured for automatic transcription.
+
+### 3️⃣ Transcript Editing
+
+- Users can review automatically generated transcripts.
+- Text can be refined to improve caption accuracy.
+- Edited transcripts can be used for further caption customization.
+
+### 4️⃣ Caption Customization
+
+- Customize font family, size, weight, and colors.
+- Adjust caption positioning according to the video layout.
+- Apply dynamic text animations and word-highlighting effects.
+- Preview caption appearance while making changes.
+
+### 5️⃣ Video Preview & Export
+
+- Preview customized captions alongside video content.
+- Export subtitle files in SRT and VTT formats.
+- Export captioned video content in MP4 format.
+
+### 6️⃣ Theme & Interface
+
+- Switch between dark and light themes.
+- Use the responsive interface across different screen sizes.
+- Access the caption customization workflow through an interactive user interface.
+
+---
+
+## ▶️ Installation & Setup
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Git
+- Visual Studio Code or another code editor
+- A modern web browser
+- VS Code Live Server extension or another local development server
+
+### 1. Clone the Repository
+
 ```bash
-cd MasterCaption
+git clone https://github.com/tapobrata2002/Master-Caption..git
 ```
 
-### Run Locally
-Open the project using VS Code Live Server or another local development server. Once launched, open the application in your browser.
+### 2. Navigate to the Project Directory
 
-> **Note:** External transcription services or API credentials may need to be configured for the automatic transcription functionality.
+```bash
+cd Master-Caption.
+```
 
-## 🎯 Project Vision
+### 3. Open the Project
 
-MasterCaption aims to make professional video captioning more accessible to content creators, video editors, and digital storytellers.
-By combining automated transcription with flexible styling and dynamic visual effects, the platform brings efficiency and creativity together in a streamlined captioning workflow.
+Open the project folder in Visual Studio Code.
 
-## 🔮 Future Enhancements
-- Multilingual transcription and regional language support.
-- Additional caption animation presets and visual effects.
-- Advanced transcript editing and synchronization.
-- More export formats and customization options.
-- Improved transcription accuracy and performance.
+### 4. Launch the Application
 
-## 👨‍💻 Developer
+- Open `index.html` in Visual Studio Code.
+- Right-click the file.
+- Select **Open with Live Server**.
+
+Alternatively, use another local development server to serve the project.
+
+Open the local URL in your browser to access MasterCaption.
+
+### 5. Configure Transcription Services
+
+If automatic transcription requires an external service, configure the required service or API credentials before using that functionality.
+
+---
+
+## 🌐 Deployment
+
+MasterCaption can be hosted as a static web application using a suitable hosting platform.
+
+The application can be deployed through platforms such as:
+
+- Vercel
+- Netlify
+- GitHub Pages (subject to external service and API requirements)
+
+---
+
+## 🔮 Future Improvements
+
+- Introduce multilingual transcription and regional language support.
+- Add more caption animation presets and visual effects.
+- Improve transcript editing and synchronization.
+- Expand subtitle and video export options.
+- Improve transcription accuracy and processing performance.
+- Introduce advanced caption templates and reusable styles.
+- Enhance the overall video editing experience.
+
+---
+
+## 🤝 Contribution
+
+This repository serves as a project focused on frontend development and building practical tools for video editors and content creators.
+
+Suggestions, feedback, and improvements are welcome.
+
+If you find something worth improving, feel free to open an issue or submit a pull request.
+
+---
+
+## 👨‍💻 Author
+
 **Tapobrata Roy**
 
-If you find this project interesting, consider giving the repository a ⭐!
+Frontend Developer | Creative Professional
+
+- GitHub: [tapobrata2002](https://github.com/tapobrata2002)
+
 ---
-**MasterCaption — Make Every Word Count.**
+
+### 🎬 MASTERCAPTION
+
+**Make Every Word Count.**
+
+Made with ❤️ and JavaScript.
