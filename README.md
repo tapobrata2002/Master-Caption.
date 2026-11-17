@@ -191,4 +191,3 @@ Frontend Developer | Creative Professional
 
 **Make Every Word Count.**
 
-Made with ❤️ and JavaScript.
