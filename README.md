@@ -2,15 +2,19 @@
 
 ### Create. Customize. Caption.
 
-Make every word count.
+**Make Every Word Count.**
 
-**MasterCaption** is an AI-powered video captioning platform designed to simplify subtitle generation and give content creators greater control over their video captions.
+MasterCaption is an AI-powered video captioning platform designed to simplify subtitle generation and give content creators greater control over their video captions.
 
 The platform allows users to generate transcripts, customize caption appearances, experiment with dynamic text effects, and export captioned content through an intuitive interface.
 
 Built using **HTML5, CSS3, and JavaScript**, MasterCaption combines automated transcription capabilities with flexible caption customization to make video editing workflows more efficient and creative.
 
-📂 **GitHub Repository:** [View Source Code](https://github.com/tapobrata2002/Master-Caption.)
+## 🌐 Live Demo
+
+🚀 **[Try MasterCaption Live](https://master-caption.netlify.app/)**
+
+📂 **[GitHub Repository](https://github.com/tapobrata2002/Master-Caption)**
 
 ---
 
@@ -114,13 +118,13 @@ Make sure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/tapobrata2002/Master-Caption..git
+git clone https://github.com/tapobrata2002/Master-Caption.git
 ```
 
 ### 2. Navigate to the Project Directory
 
 ```bash
-cd Master-Caption.
+cd Master-Caption
 ```
 
 ### 3. Open the Project
@@ -145,12 +149,14 @@ If automatic transcription requires an external service, configure the required 
 
 ## 🌐 Deployment
 
-MasterCaption can be hosted as a static web application using a suitable hosting platform.
+MasterCaption is deployed as a web application and can be accessed through the live demo.
 
-The application can be deployed through platforms such as:
+**Live Website:** [master-caption.netlify.app](https://master-caption.netlify.app/)
 
-- Vercel
+The application can also be hosted through platforms such as:
+
 - Netlify
+- Vercel
 - GitHub Pages (subject to external service and API requirements)
 
 ---
@@ -183,11 +189,16 @@ If you find something worth improving, feel free to open an issue or submit a pu
 
 Frontend Developer | Creative Professional
 
-- GitHub: [tapobrata2002](https://github.com/tapobrata2002)
+- GitHub: [@tapobrata2002](https://github.com/tapobrata2002)
 
 ---
+
+<div align="center">
 
 ### 🎬 MASTERCAPTION
 
 **Make Every Word Count.**
 
+[🌐 Live Demo](https://master-caption.netlify.app/) · [📂 Source Code](https://github.com/tapobrata2002/Master-Caption)
+
+</div>
